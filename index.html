@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل الشامل للمحاسبة المالية - تعلم ذاتي</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --dark: #2c3e50;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--gradient);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--dark);
+        }
+
+        .progress-header {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stat-item {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            min-width: 120px;
+        }
+        
+        .tab:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .phase-container {
+            margin-bottom: 40px;
+        }
+        
+        .phase-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phase-status {
+            background: var(--success);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .phase-status.pending {
+            background: var(--warning);
+        }
+        
+        .unit-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .unit-title {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .unit-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .objective-box {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--secondary);
+        }
+        
+        .example-box {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--warning);
+        }
+        
+        .exercise-box {
+            background: #f0f7f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--success);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .test-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .options {
+            margin-top: 10px;
+        }
+        
+        .option {
+            margin-bottom: 8px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 4px solid var(--success);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .completion-badge {
+            background: var(--success);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .unit-complete .unit-title {
+            color: var(--success);
+        }
+
+        .unit-complete {
+            border-left-color: var(--success);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: white;
+        }
+
+        .motivation-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                flex: none;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-title {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🧮</div>
+            <h1>الدليل الشامل للمحاسبة المالية</h1>
+            <p class="subtitle">منصة تعلم ذاتي - من الصفر إلى الاحتراف</p>
+            <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                <span>🕒 الوقت المقدر: 8 أسابيع</span> | 
+                <span>📊 4 مراحل تعليمية</span> | 
+                <span>🎯 100% تطبيق عملي</span>
+            </div>
+        </header>
+
+        <!-- شريط التقدم -->
+        <div class="progress-header">
+            <h3>تقدمك في الرحلة التعليمية</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="stats">
+                <div class="stat-item" id="completedUnits">0/12 وحدة مكتملة</div>
+                <div class="stat-item" id="timeSpent">الوقت: 0 ساعة</div>
+                <div class="stat-item" id="successRate">معدل النجاح: 0%</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="tab active" data-target="intro">🏠 البداية</div>
+            <div class="tab" data-target="phase1">📘 المرحلة الأولى</div>
+            <div class="tab" data-target="phase2">📗 المرحلة الثانية</div>
+            <div class="tab" data-target="phase3">📙 المرحلة الثالثة</div>
+            <div class="tab" data-target="phase4">📕 المرحلة الرابعة</div>
+            <div class="tab" data-target="tests">📝 الاختبارات</div>
+            <div class="tab" data-target="resources">🛠️ الموارد</div>
+        </div>
+
+        <!-- البداية -->
+        <section id="intro" class="content-section active">
+            <h2>مرحباً بك في رحلة تعلم المحاسبة! 👋</h2>
+            
+            <div class="motivation-message">
+                "لا تتعلم المحاسبة لمجرد الحصول على وظيفة، بل تعلمها لفهم لغة الأعمال واتخاذ قرارات مالية ذكية"
+            </div>
+            
+            <div class="objective-box">
+                <h3>🎯 خطة الرحلة التعليمية</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-right: 4px solid #3498db;">
+                        <h4>📘 المرحلة الأولى</h4>
+                        <p>الأساسيات والمفاهيم الجوهرية</p>
+                        <small>⏳ أسبوعان</small>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-right: 4px solid #2ecc71;">
+                        <h4>📗 المرحلة الثانية</h4>
+                        <p>الدورة المحاسبية</p>
+                        <small>⏳ أسبوعان</small>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-right: 4px solid #f39c12;">
+                        <h4>📙 المرحلة الثالثة</h4>
+                        <p>القوائم المالية</p>
+                        <small>⏳ أسبوعان</small>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-right: 4px solid #e74c3c;">
+                        <h4>📕 المرحلة الرابعة</h4>
+                        <p>التطبيق العملي</p>
+                        <small>⏳ أسبوعان</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <h3>📋 نصائح للنجاح</h3>
+                <ol>
+                    <li><strong>التزم بجدول منتظم:</strong> خصص 30-60 دقيقة يومياً للدراسة</li>
+                    <li><strong>طبق ما تتعلمه:</strong> لا تقرأ فقط، بل نفذ التمارين</li>
+                    <li><strong>لا تستعجل:</strong> تأكد من فهم كل مرحلة قبل الانتقال للتي تليها</li>
+                    <li><strong>سجل ملاحظاتك:</strong> استخدم دفتراً خاصاً بالمحاسبة</li>
+                    <li><strong>اختبر نفسك:</strong> استخدم الاختبارات لاكتشاف نقاط الضعف</li>
+                </ol>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn start-journey-btn">ابدأ رحلتي التعليمية الآن 🚀</button>
+            </div>
+        </section>
+
+        <!-- المرحلة الأولى -->
+        <section id="phase1" class="content-section">
+            <h2 class="phase-title">
+                📘 المرحلة الأولى: الأساسيات والمفاهيم الجوهرية
+                <span class="phase-status pending" id="phase1Status">قيد التقدم</span>
+            </h2>
+            
+            <div class="phase-container">
+                <div class="unit-card" id="unit1-1">
+                    <h3 class="unit-title">
+                        الوحدة 1.1: مقدمة في المحاسبة المالية
+                        <input type="checkbox" class="unit-checkbox" data-unit="unit1-1">
+                    </h3>
+                    
+                    <div class="objective-box">
+                        <h4>🎯 أهداف التعلم</h4>
+                        <ul>
+                            <li>فهم طبيعة وأهمية المحاسبة المالية</li>
+                            <li>التمييز بين فروع المحاسبة المختلفة</li>
+                            <li>معرفة المستفيدين من المعلومات المحاسبية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>💡 الشرح النظري المبسط</h4>
+                        <p>المحاسبة المالية هي <strong>لغة الأعمال</strong> التي تُسجل وتُلخص وتُبلغ عن الأنشطة الاقتصادية للشركة. تخدم هذه المعلومات:</p>
+                        <ul>
+                            <li>المستثمرين (للاتخاذ قرارات الاستثمار)</li>
+                            <li>الدائنين (لتقييم القدرة على السداد)</li>
+                            <li>الإدارة (للتخطيط والرقابة)</li>
+                            <li>الجهات الحكومية (للضرائب والإحصاءات)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-box">
+                        <h4>📝 تمرين تطبيقي 1</h4>
+                        <p><strong>السؤال:</strong> ما الفرق بين المحاسبة المالية والمحاسبة الإدارية؟</p>
+                        <button class="btn show-solution">عرض الحل</button>
+                        <div class="solution" style="display: none; margin-top: 15px; padding: 15px; background: #f0f0f0; border-radius: 5px;">
+                            <p><strong>الإجابة:</strong></p>
+                            <ul>
+                                <li><strong>المستفيدون:</strong> المالية (خارجيون) vs الإدارية (داخليون)</li>
+                                <li><strong>التوقيت:</strong> المالية (فترات محددة) vs الإدارية (مستمرة)</li>
+                                <li><strong>التفصيل:</strong> المالية (إجمالي) vs الإدارية (تفصيلي)</li>
+                                <li><strong>الالتزام:</strong> المالية (إلزامية) vs الإدارية (اختيارية)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card" id="unit1-2">
+                    <h3 class="unit-title">
+                        الوحدة 1.2: المعادلة المحاسبية
+                        <input type="checkbox" class="unit-checkbox" data-unit="unit1-2">
+                    </h3>
+                    
+                    <div class="objective-box">
+                        <h4>🎯 أهداف التعلم</h4>
+                        <ul>
+                            <li>فهم المعادلة المحاسبية الأساسية</li>
+                            <li>تصنيف العناصر المالية ضمن الحسابات الخمسة</li>
+                            <li>تحليل تأثير المعاملات على المعادلة</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>💡 الشرح النظري المبسط</h4>
+                        <p><strong>الأصول = الخصوم + حقوق الملكية</strong></p>
+                        <p>هذه المعادلة يجب أن تظل متوازنة دائماً بعد كل عملية مالية.</p>
+                        
+                        <h5>💰 مثال رقمي:</h5>
+                        <p>الشركة الناشئة برأس مال 100,000 ريال:</p>
+                        <ul>
+                            <li>الأصول: نقدية 100,000 ريال</li>
+                            <li>الخصوم: 0 ريال</li>
+                            <li>حقوق الملكية: 100,000 ريال</li>
+                        </ul>
+                        <p>المعادلة: 100,000 = 0 + 100,000 ✓</p>
+                    </div>
+                    
+                    <div class="exercise-box">
+                        <h4>📝 تمرين تطبيقي 2</h4>
+                        <p><strong>السؤال:</strong> صنِّف العناصر التالية:</p>
+                        <ol>
+                            <li>النقدية في الصندوق</li>
+                            <li>قرض من البنك</li>
+                            <li>أرباح محتجزة</li>
+                            <li>أثاث المكتب</li>
+                            <li>رواتب مستحقة الدفع</li>
+                        </ol>
+                        <button class="btn show-solution">عرض الحل</button>
+                        <div class="solution" style="display: none; margin-top: 15px; padding: 15px; background: #f0f0f0; border-radius: 5px;">
+                            <p><strong>الإجابة:</strong></p>
+                            <ul>
+                                <li>النقدية في الصندوق → <strong>أصول</strong></li>
+                                <li>قرض من البنك → <strong>خصوم</strong></li>
+                                <li>أرباح محتجزة → <strong>حقوق ملكية</strong></li>
+                                <li>أثاث المكتب → <strong>أصول</strong></li>
+                                <li>رواتب مستحقة الدفع → <strong>خصوم</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="test-container">
+                <h3>اختبار المرحلة الأولى</h3>
+                <p>اختبر فهمك للمفاهيم الأساسية في المحاسبة:</p>
+                
+                <div class="question">
+                    <p>1. الهدف الأساسي من المحاسبة المالية هو:</p>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q1" value="a" id="q1a"> <label for="q1a">أ) التخطيط للمستقبل</label></div>
+                        <div class="option"><input type="radio" name="q1" value="b" id="q1b"> <label for="q1b">ب) إعداد التقارير للمستخدمين الخارجيين</label></div>
+                        <div class="option"><input type="radio" name="q1" value="c" id="q1c"> <label for="q1c">ج) الرقابة على التكاليف</label></div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>2. من المستفيدون من المحاسبة المالية؟</p>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q2" value="a" id="q2a"> <label for="q2a">أ) المدير الداخلي فقط</label></div>
+                        <div class="option"><input type="radio" name="q2" value="b" id="q2b"> <label for="q2b">ب) جهاز الضرائب والمستثمرون</label></div>
+                        <div class="option"><input type="radio" name="q2" value="c" id="q2c"> <label for="q2c">ج) الموظفون فقط</label></div>
+                    </div>
+                </div>
+                
+                <button class="btn submit-test" data-phase="1">تصحيح الاختبار</button>
+                
+                <div class="test-results" style="display: none; margin-top: 20px; padding: 15px; background: #f0f7f0; border-radius: 5px;">
+                    <h4>نتيجة الاختبار</h4>
+                    <p>درجتك: <span class="score">0</span>/2</p>
+                    <p>التقييم: <span class="evaluation">-</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- المرحلة الثانية -->
+        <section id="phase2" class="content-section">
+            <h2 class="phase-title">
+                📗 المرحلة الثانية: الدورة المحاسبية
+                <span class="phase-status pending" id="phase2Status">قيد التقدم</span>
+            </h2>
+            
+            <div class="phase-container">
+                <div class="unit-card" id="unit2-1">
+                    <h3 class="unit-title">
+                        الوحدة 2.1: نظرية القيد المزدوج
+                        <input type="checkbox" class="unit-checkbox" data-unit="unit2-1">
+                    </h3>
+                    
+                    <div class="objective-box">
+                        <h4>🎯 أهداف التعلم</h4>
+                        <ul>
+                            <li>إتقان قاعدة المدين والدائن</li>
+                            <li>تحليل المعاملات المالية بدقة</li>
+                            <li>تسجيل القيود اليومية بشكل صحيح</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>💡 الشرح النظري المبسط</h4>
+                        <p>لكل عملية مالية <strong>طرفان متساويان</strong> - مدين ودائن.</p>
+                        
+                        <h5>📊 قاعدة المدين والدائن:</h5>
+                        <ul>
+                            <li><strong>زيادة الأصول:</strong> مدين</li>
+                            <li><strong>نقصان الأصول:</strong> دائن</li>
+                            <li><strong>زيادة الخصوم:</strong> دائن</li>
+                            <li><strong>نقصان الخصوم:</strong> مدين</li>
+                            <li><strong>زيادة حقوق الملكية:</strong> دائن</li>
+                            <li><strong>نقصان حقوق الملكية:</strong> مدين</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise-box">
+                        <h4>🎮 تمرين تفاعلي</h4>
+                        <p><strong>المعاملة:</strong> حصلت الشركة على قرض بنكي 100,000 ريال</p>
+                        <p>المطلوب: املأ الفراغات:</p>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                            <p>من مذكورين: <input type="text" placeholder="الحساب المدين" id="debitAccount" style="padding: 5px; margin: 0 5px;"> 100,000 (مدين)</p>
+                            <p>إلى مذكورين: <input type="text" placeholder="الحساب الدائن" id="creditAccount" style="padding: 5px; margin: 0 5px;"> 100,000 (دائن)</p>
+                        </div>
+                        
+                        <button class="btn check-answer">تحقق من الإجابة</button>
+                        <div id="answerFeedback" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- المرحلة الثالثة -->
+        <section id="phase3" class="content-section">
+            <h2 class="phase-title">
+                📙 المرحلة الثالثة: القوائم المالية
+                <span class="phase-status pending" id="phase3Status">قيد التقدم</span>
+            </h2>
+            
+            <div class="phase-container">
+                <div class="unit-card" id="unit3-1">
+                    <h3 class="unit-title">
+                        الوحدة 3.1: قائمة الدخل
+                        <input type="checkbox" class="unit-checkbox" data-unit="unit3-1">
+                    </h3>
+                    
+                    <div class="objective-box">
+                        <h4>🎯 أهداف التعلم</h4>
+                        <ul>
+                            <li>إعداد قائمة الدخل بشكل صحيح</li>
+                            <li>حساب صافي الدخل/الخسارة</li>
+                            <li>تحليل علاقة الإيرادات بالمصروفات</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4>💡 مثال رقمي تفصيلي</h4>
+                        <p><strong>شركة النجاح - قائمة الدخل لشهر يناير 2024:</strong></p>
+                        <div style="background: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                            <p><strong>الإيرادات:</strong> 120,000 ريال</p>
+                            <p><strong>المصروفات:</strong> 85,000 ريال</p>
+                            <p><strong>صافي الدخل:</strong> 35,000 ريال</p>
+                        </div>
+                        <p><strong>المعادلة:</strong> الإيرادات - المصروفات = صافي الدخل</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- المرحلة الرابعة -->
+        <section id="phase4" class="content-section">
+            <h2 class="phase-title">
+                📕 المرحلة الرابعة: التطبيق العملي
+                <span class="phase-status pending" id="phase4Status">قيد التقدم</span>
+            </h2>
+            
+            <div class="project-card">
+                <h3>🎯 مشروع عملي: محل تجاري بسيط</h3>
+                
+                <div class="objective-box">
+                    <h4>📊 المعطيات:</h4>
+                    <ul>
+                        <li>رأس المال: 50,000 ريال</li>
+                        <li>النشاط: بيع المواد الغذائية</li>
+                        <li>المدة: شهر واحد</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4>🔄 العمليات المالية (10 عمليات):</h4>
+                    <ol>
+                        <li>إيداع رأس المال في البنك</li>
+                        <li>شراء بضاعة نقداً</li>
+                        <li>دفع إيجار المحل</li>
+                        <li>بيع جزء من البضاعة نقداً</li>
+                        <li>شراء أثاث مكتبي تقسيط</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- الاختبارات -->
+        <section id="tests" class="content-section">
+            <h2 class="phase-title">📝 الاختبارات والتقييم</h2>
+            
+            <div class="test-container">
+                <h3>اختبار شامل - 5 أسئلة</h3>
+                
+                <div class="question">
+                    <p>1. المعادلة المحاسبية الأساسية هي:</p>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="final1" value="a"> أ) الأصول = المصروفات + الإيرادات</div>
+                        <div class="option"><input type="radio" name="final1" value="b"> ب) الأصول = الخصوم + حقوق الملكية</div>
+                        <div class="option"><input type="radio" name="final1" value="c"> ج) الإيرادات - المصروفات = صافي الدخل</div>
+                    </div>
+                </div>
+                
+                <button class="btn submit-test" data-phase="final">تصحيح الاختبار</button>
+            </div>
+        </section>
+
+        <!-- الموارد -->
+        <section id="resources" class="content-section">
+            <h2 class="phase-title">🛠️ الموارد والنماذج</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>📒 دفتر اليومية</h3>
+                    <p>نموذج Excel جاهز لتدوين القيود اليومية</p>
+                    <a href="#" class="download-btn">تحميل النموذج</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📊 دفتر الأستاذ</h3>
+                    <p>نموذج لترحيل القيود وترصيد الحسابات</p>
+                    <a href="#" class="download-btn">تحميل النموذج</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>الدليل الشامل للمحاسبة المالية &copy; 2024 - رحلة تعلم ذاتي ممتعة</p>
+        </footer>
+    </div>
+
+    <script>
+        // نظام التتبع الشخصي
+        class PersonalProgressTracker {
+            constructor() {
+                this.progress = {
+                    startDate: new Date().toISOString(),
+                    completedUnits: [],
+                    testScores: {},
+                    timeSpent: 0,
+                    lastActivity: new Date().toISOString()
+                };
+                this.loadProgress();
+                this.startTimeTracker();
+            }
+            
+            loadProgress() {
+                const saved = localStorage.getItem('myAccountingProgress');
+                if (saved) {
+                    this.progress = {...this.progress, ...JSON.parse(saved)};
+                }
+                this.updateUI();
+            }
+            
+            saveProgress() {
+                localStorage.setItem('myAccountingProgress', JSON.stringify(this.progress));
+                this.updateUI();
+            }
+            
+            completeUnit(unitId) {
+                if (!this.progress.completedUnits.includes(unitId)) {
+                    this.progress.completedUnits.push(unitId);
+                    this.saveProgress();
+                    this.showNotification(`🎉 مبروك! أكملت ${this.getUnitName(unitId)}`);
+                }
+            }
+            
+            uncompleteUnit(unitId) {
+                this.progress.completedUnits = this.progress.completedUnits.filter(id => id !== unitId);
+                this.saveProgress();
+            }
+            
+            getUnitName(unitId) {
+                const unitNames = {
+                    'unit1-1': 'الوحدة 1.1: مقدمة في المحاسبة المالية',
+                    'unit1-2': 'الوحدة 1.2: المعادلة المحاسبية',
+                    'unit2-1': 'الوحدة 2.1: نظرية القيد المزدوج',
+                    'unit3-1': 'الوحدة 3.1: قائمة الدخل'
+                };
+                return unitNames[unitId] || unitId;
+            }
+            
+            startTimeTracker() {
+                setInterval(() => {
+                    this.progress.timeSpent += 1;
+                    this.progress.lastActivity = new Date().toISOString();
+                    if (this.progress.timeSpent % 5 === 0) {
+                        this.saveProgress();
+                    }
+                }, 60000);
+            }
+            
+            updateUI() {
+                const totalUnits = 4;
+                const completed = this.progress.completedUnits.length;
+                const progressPercent = (completed / totalUnits) * 100;
+                
+                document.getElementById('progressFill').style.width = `${progressPercent}%`;
+                document.getElementById('completedUnits').textContent = `${completed}/${totalUnits} وحدة مكتملة`;
+                
+                const hours = Math.floor(this.progress.timeSpent / 60);
+                const minutes = this.progress.timeSpent % 60;
+                document.getElementById('timeSpent').textContent = `الوقت: ${hours} ساعة ${minutes} دقيقة`;
+                
+                this.progress.completedUnits.forEach(unitId => {
+                    const unitElement = document.getElementById(unitId);
+                    if (unitElement) {
+                        unitElement.classList.add('unit-complete');
+                        const checkbox = unitElement.querySelector('.unit-checkbox');
+                        if (checkbox) checkbox.checked = true;
+                    }
+                });
+            }
+            
+            showNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--success);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+
+        // تهيئة النظام
+        const tracker = new PersonalProgressTracker();
+
+        // التنقل بين التبويبات
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // زر البدء
+        document.querySelector('.start-journey-btn').addEventListener('click', () => {
+            document.querySelector('.tab[data-target="phase1"]').click();
+        });
+
+        // إكمال الوحدات
+        document.querySelectorAll('.unit-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const unitId = this.getAttribute('data-unit');
+                if (this.checked) {
+                    tracker.completeUnit(unitId);
+                    this.parentElement.parentElement.classList.add('unit-complete');
+                } else {
+                    tracker.uncompleteUnit(unitId);
+                    this.parentElement.parentElement.classList.remove('unit-complete');
+                }
+            });
+        });
+
+        // عرض حلول التمارين
+        document.querySelectorAll('.show-solution').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const solution = this.nextElementSibling;
+                solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+                this.textContent = solution.style.display === 'none' ? 'عرض الحل' : 'إخفاء الحل';
+            });
+        });
+
+        // التحقق من الإجابة التفاعلية
+        document.querySelector('.check-answer')?.addEventListener('click', function() {
+            const debitAccount = document.getElementById('debitAccount').value.toLowerCase();
+            const creditAccount = document.getElementById('creditAccount').value.toLowerCase();
+            const feedback = document.getElementById('answerFeedback');
+            
+            if (debitAccount.includes('بنك') && creditAccount.includes('قرض')) {
+                feedback.innerHTML = '<span style="color: var(--success);">✓ إجابة صحيحة! القيد الصحيح: من ح/ البنك 100,000 (مدين) إلى ح/ قرض البنك 100,000 (دائن)</span>';
+            } else {
+                feedback.innerHTML = '<span style="color: var(--accent);">✗ حاول مرة أخرى. تلميح: المدين هو الأصل الذي زاد (النقدية في البنك)، والدائن هو الالتزام الذي زاد (القرض)</span>';
+            }
+        });
+
+        // تصحيح الاختبارات
+        document.querySelectorAll('.submit-test').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const phase = this.getAttribute('data-phase');
+                const results = this.nextElementSibling;
+                
+                if (phase === '1') {
+                    let score = 0;
+                    if (document.querySelector('input[name="q1"]:checked')?.value === 'b') score++;
+                    if (document.querySelector('input[name="q2"]:checked')?.value === 'b') score++;
+                    
+                    if (results) {
+                        results.querySelector('.score').textContent = score;
+                        results.querySelector('.evaluation').textContent = score >= 2 ? 'ممتاز! 🎉' : 'جيد، يحتاج مراجعة';
+                        results.style.display = 'block';
+                    }
+                }
+            });
+        });
+
+        console.log('🚀 نظام تعلم المحاسبة جاهز! ابدأ رحلتك التعليمية الآن.');
+    </script>
+</body>
+  </html>
